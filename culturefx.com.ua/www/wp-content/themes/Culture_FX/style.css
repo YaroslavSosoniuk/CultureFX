@@ -1,0 +1,442 @@
+
+*{
+  padding:0;
+}
+form{
+    width: 100%;
+    max-width: 790px;
+    margin: auto;
+    padding: 15px;
+    padding-bottom: 0;
+    background: #fff;
+}
+body{
+    background: #eee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input[type="text"]{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+input[type="email"]{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+input[type="tel"]{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+input[type="url"]{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+input[type="password"]{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+input[type="submit"]{
+  border: 1px solid #1d5897;
+  background: #2064aa;
+  background: -moz-linear-gradient(top, #2064aa 0%, #1c508b 100%);
+  background: -webkit-linear-gradient(top, #2064aa 0%,#1c508b 100%);
+  background: linear-gradient(to bottom, #2064aa 0%,#1c508b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2064aa', endColorstr='#1c508b',GradientType=0 );
+  padding: 7px 120px;
+  border-radius: 5px;
+  box-shadow:
+   0 1px rgba(255,255,255,.2) inset,
+   0 3px 5px rgba(0,1,6,.5),
+   0 0 1px 1px rgba(0,1,6,.2);
+  cursor: pointer;
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 100px;
+}
+
+input[type="submit"],
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="submit"]:active {
+  outline: none;
+  border: none;
+}
+
+
+/*input[type="submit"]{
+    font-weight: 700;
+      color: rgb(209,209,217);
+      text-decoration: none;
+      text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+      padding: .5em 1em;
+      outline: none;
+      border-radius: 3px;
+      background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+      box-shadow:
+       0 1px rgba(255,255,255,.2) inset,
+       0 3px 5px rgba(0,1,6,.5),
+       0 0 1px 1px rgba(0,1,6,.2);
+      transition: .2s ease-in-out;
+      border: 0;
+      padding: 5px;
+      padding-left: 25px;
+      padding-right: 25px;
+      font-size: 16px;
+      cursor: pointer;
+}
+input[type="submit"]:hover:not(:active) {
+  background: linear-gradient(rgb(126,126,134), rgb(70,71,76)) rgb(126,126,134);
+}
+input[type="submit"]:active {
+  top: 1px;
+  background: linear-gradient(rgb(76,77,82), rgb(56,57,62)) rgb(76,77,82);
+  box-shadow:
+   0 0 1px rgba(0,0,0,.5) inset,
+   0 2px 3px rgba(0,0,0,.5) inset,
+   0 1px 1px rgba(255,255,255,.1);
+}*/
+select{
+    width: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.input_label{
+    font-weight: bold;
+}
+textarea {
+    padding: 10px;
+    box-sizing: border-box;
+    width:50%;
+    min-width:25%;
+    max-width: 100%;
+    resize: both; /* Запрещаем изменять размер */
+}
+h1{
+    text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+.center_text {
+  text-align: center;
+  padding: 3px 0;
+}
+
+.gender{
+    display: inline-block;
+    margin-right: 50px;
+}
+.age{
+    display: inline-block;
+    margin-right: 40px;
+}
+.age_points{
+  display: inline-block;
+}
+.age_points br{
+  display: none;
+}
+.gender_chose{
+  display: inline-block;
+}
+.gender_chose br{
+  display: none;
+}
+.c-level-input {
+    display: inline-block;
+}
+.c-level-text {
+    display: inline-block;
+    margin-right: 50px;
+}
+.c-level-input br {
+    display: none;
+}
+.agrement input, .agrement label {
+    display: inline-block;
+    vertical-align: middle;
+}
+.agrement label {
+    width: 90%;
+    margin-left: 10px;
+}
+.join_now_text {
+    text-align: center;
+    font-size: 12px;
+    padding: 30px 60px;
+}
+/*Mykola Ivanov edits*/
+
+form h2 {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.dark_text {
+  color: #aeaeae;
+  padding: 15px 10px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.text_line {
+  position: relative;
+  left: 90px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.text_line::after,
+.text_line::before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 1px;
+  background-color: #aeaeae;
+  top: 50%;
+}
+
+.text_line::after {
+  left: -65px;    /* -(.text_line::after width) - 5px  */
+}
+
+.text_line::before {
+  left: 100%;
+}
+
+.log_in {
+  background-color: #0077b5;
+  border-radius: 7px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+}
+
+.log_in,
+.log_in:active,
+.log_in:focus {
+  border: none;
+  outline: none;
+}
+
+.log_in i,
+.log_in span {
+  padding: 15px;
+}
+
+.log_in i {
+  border-right: 1px solid #1f88bf;
+  font-size: 20px;
+  padding: 11px;
+}
+
+.m_width {
+  max-width: 340px;
+}
+
+input[type="text"] {
+
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  outline: none;
+  border-top: 2px solid #9a9a9a;
+  border-left: 2px solid #9a9a9a;
+  border-width: 2px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+}
+
+.input_text_italic {
+  font-style: italic;
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.text_input {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.text_input p,
+.input_text_italic p {
+  margin: 0;
+}
+
+.join_now {
+  margin-left: -15px;
+  margin-right: -15px;
+  background-color: #eeeeee;
+}
+
+.input_label .comment {
+  padding-left: 100px;
+  font-weight: normal;
+}
+h1.thank_for_reg {
+    text-align: center;
+    color: #888383;
+    margin-bottom: 0;
+}
+.thank_reg{
+	width: 10%;
+    margin-left: 45%;
+}
+.dark_text, .log_in{
+	display:none;
+}
+h2.thank_for_reg_after {
+    text-align: center;
+    margin-top: 20px;
+    color: #888383;
+}
+/*end Mykola Ivanov edits*/
+
+@media screen and (max-width:1280px){
+  form{
+    width:42%;
+  }
+  .input_label .comment {
+    display: block;
+    padding-left: 0;
+  }
+}
+@media screen and (max-width:1200px){
+  form{
+    width:46%;
+  }
+}
+@media screen and (max-width:1152px){
+  form{
+    width:50%;
+  }
+}
+@media screen and (max-width:1024px){
+  form{
+    width:54%;
+  }
+}
+@media screen and (max-width:960px){
+  form label {
+    font-size: 14px;
+    }
+    .join_now_text {
+    font-size: 12px;
+    }
+
+}
+@media screen and (max-width:848px){
+  form{
+    width: 70%;
+  }
+  .dark_text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .text_line {
+    padding-right: 0;
+    left: 0;
+  }
+
+  .text_line::after,
+  .text_line::before {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 1px;
+    background-color: #aeaeae;
+    top: 50%;
+  }
+
+  .text_line::after {
+    left: 0;
+  }
+
+  .text_line::before {
+    left: auto;
+    right: 0;
+
+  }
+
+  .log_in {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width:667px){
+  form{
+    width:80%;
+  }
+}
+@media screen and (max-width:640px){
+  form p {
+    font-size: 15px;
+  }
+  h1{
+    font-size:26px;
+  }
+  body{
+    margin: 0;
+  }
+}
+@media screen and (max-width:480px){
+  form{
+    width:96%;
+    padding:2%;
+  }
+  .age{
+    display: block;
+  }
+  .c-level-text {
+      display: block;
+      margin-right: 0;
+  }
+  input[type="submit"] {
+    padding: 7px 100px;
+  }
+}
+
+@media screen and (max-width:320px){
+  .age_points{
+    display: block;
+  }
+  .age{
+    display: block;
+  }
+  .age_points br{
+    display: block;
+  }
+  .gender_chose{
+    display: block;
+  }
+  .gender_chose br{
+    display: block;
+  }
+  .c-level-input br {
+      display: block;
+  }
+  .agrement label {
+    width: 90%;
+    margin-left: 5px;
+    }
+}
