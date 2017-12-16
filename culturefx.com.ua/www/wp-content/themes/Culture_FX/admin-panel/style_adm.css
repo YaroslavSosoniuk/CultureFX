@@ -174,6 +174,15 @@ button.data_admin {
     outline: 0;
     cursor: pointer;
 }
+input[type="text"]{
+    text-align: center;
+    box-sizing: border-box;
+}
+input[type="text"]:focus{
+    outline: 2px solid #9a9a9a !important;
+    border: none;
+    box-shadow: none;
+}
 /*#main_part>form>table>tbody>tr {
     display: inline-block;
     width: 50%;
@@ -184,3 +193,47 @@ button.data_admin {
     display: block;
     margin: 0 auto;
 }*/
+@media screen and (max-width: 1024px){
+    div#main_part table tr>td:first-child>p>span {
+        display: block;
+    }
+}
+@media screen and (max-width: 848px){
+    div#main_part table tr>td:first-child>p:last-child {
+        max-width: 115px;
+        margin: 10px auto;
+    }
+    #main_part table tbody tr input[type="checkbox"], #main_part table tbody tr input[type="checkbox"] + label {
+        display: inline-block;
+        margin: 0 0 0 10px;
+    }
+    div#main_part table thead th button{
+        padding: 10px 10px;
+    }
+}
+@media screen and (max-width: 768px){
+    div#form_reg_panel #sidebar_admin #admin_title p {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    div#form_reg_panel #sidebar_admin img {
+        display: inline-block;
+        height: 20vh;
+        vertical-align: middle;
+        width: auto;
+    }
+    div#form_reg_panel #sidebar_admin {
+        width: 100%;
+        height: 20vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        background: #888383;
+    }
+    div#form_reg_panel #sidebar_admin #admin_groups {
+        padding: 5px 25px;
+    }
+
+}

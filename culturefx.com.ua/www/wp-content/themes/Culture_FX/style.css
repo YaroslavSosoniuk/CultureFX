@@ -1,4 +1,10 @@
-
+/*
+Theme Name: Culture FX
+Theme URI: http://dontforget.pro/wordpress/chistyiy-shablon-wordpress-dlya-razrabotki/
+Description: Чистый шаблон WordPress для разработки
+Author: Shews
+Author URI: http://dontforget.pro
+*/
 *{
   padding:0;
 }
@@ -252,10 +258,10 @@ input[type="text"]:focus,
 input[type="url"]:focus,
 input[type="url"]:focus,
 textarea:focus {
-  outline: none;
-  border-top: 2px solid #9a9a9a;
+  outline: 2px solid #9a9a9a;
+  /*border-top: 2px solid #9a9a9a;
   border-left: 2px solid #9a9a9a;
-  border-width: 2px;
+  border-width: 2px;*/
 }
 
 textarea {
@@ -311,7 +317,71 @@ h2.thank_for_reg_after {
     color: #888383;
 }
 /*end Mykola Ivanov edits*/
-
+select:hover {
+    background: #474845;
+    color: #fff;
+    cursor: pointer;
+}
+select:focus{
+    outline: none;
+    cursor: pointer;
+}
+input[type="radio"] + label{
+    display: inline;
+    padding-left: 20px;
+    position: relative;
+    left: -20px;
+    background: url(/wp-content/uploads/2017/12/radio_unchecked.png);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+}
+input[type="radio"] {
+    position: relative;
+    left: 2px;
+    top: 1px;
+    opacity: 0;
+    z-index: 10;
+}
+input[type="radio"]:checked + label {
+    background: url(/wp-content/uploads/2017/12/radio_checked.png);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+}
+input[type="checkbox"] + label{
+    display: inline;
+    padding-left: 20px;
+    position: relative;
+    left: -20px;
+    background: url(/wp-content/uploads/2017/12/checkbox_unchecked.png);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+}
+input[type="checkbox"] {
+    position: relative;
+    left: 2px;
+    top: 1px;
+    opacity: 0;
+    z-index: 10;
+}
+input[type="checkbox"]:checked + label {
+    background: url(/wp-content/uploads/2017/12/checkbox_checked.png);
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+}
+input:-webkit-autofill {
+    background-color: #9ed5dc !important;
+}
+input[type="checkbox"], input[type="radio"]{
+    cursor: pointer;
+}
 @media screen and (max-width:1280px){
   form{
     width:42%;

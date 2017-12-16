@@ -15,6 +15,16 @@ register_sidebar(); // Регистрируем сайдбар
 
 ?>
 <?php
+
+function custom_loginlogo() {
+    echo '<style type="text/css">
+h1 a {background-image: url(/wp-content/uploads/2017/11/600_435691150.png) !important;     background-size: cover!important; width: 50%!important;     height: 100px!important;}
+
+</style>';
+}
+add_action('login_head', 'custom_loginlogo');
+
+
 add_action('admin_menu', function(){
 	add_menu_page( 'Create your registration form', 'Admin reg form', 'read', 'reg-form', 'add_my_setting', '', 4 ); 
 } );

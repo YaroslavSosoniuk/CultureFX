@@ -5,16 +5,8 @@ require_once(dirname(FILE) . '/../../../../wp-load.php');
 $page_id = $_POST['page-id'];
 $page_name = $_POST['page-name'];
 $user_ID=get_current_user_id();
-$host = 'shevlyak.mysql.tools';
-	$user = 'shevlyak_fxuser';
-	$password = 'dsbda9ww';
-	$conn = mysql_connect($host, $user, $password);	
-	mysql_select_db('shevlyak_fxuser');
-	$query = 'SELECT * FROM user_page WHERE (id_page=\''.$page_id.'\')';
-	$q = mysql_query($query);
-	$result = mysql_fetch_array ($q);
-	$owner_page = $result['id_user'];
-	mysql_close($conn);
+require_once('../Db_connection.class.php');
+$DB = new Db_connection();
 	
 // Create new page
 if(empty($page_id)){
@@ -28,32 +20,20 @@ if(empty($page_id)){
 	  );
 	// Вставляем запись в базу данных
 		wp_insert_post( $my_post );
-		
+
 		$page = get_page_by_title( $_POST['page-name'] );
 		$page_id = $page->ID;
 		$group_size = $_POST['group-size'];
-		$host = 'shevlyak.mysql.tools';
-	$user = 'shevlyak_fxuser';
-	$password = 'dsbda9ww';
-	$conn = mysql_connect($host, $user, $password);	
-	mysql_select_db('shevlyak_fxuser');
-	  $sql = "INSERT INTO user_page ".
-				"(id_user, id_page, group_size, admin_title) ".
-				"VALUES ('$user_ID', '$page_id', '$group_size', '$page_name') ";	
-	  $retval = mysql_query( $sql );
-	  
-	  
+    $DB->db_insert('user_page', 'id_user, id_page, group_size, admin_title', "'".$user_ID."', '".$page_id."', '".$group_size."', '".$page_name."'");
+
+
 	  $skills = $_POST['skills'];
 	  $skills = array_reverse($skills);
 	  foreach($skills as $skill){
 		  if(!empty($skill)){
-		  $sql = "INSERT INTO skills ".
-				"(id_page, skill_meta) ".
-				"VALUES ('$page_id', '$skill') ";
-		  $retval = mysql_query( $sql );
+              $DB->db_insert('skills', 'id_page, skill_meta', "'".$page_id."', '".$skill."'");
 		  }
 	  }
-			mysql_close($conn);  
 $file = '../template_page.php';
 $newfile = '../page-'.$page_id.'.php';
 copy($file, $newfile);
@@ -69,6 +49,9 @@ $feedback = "<p>‘Success!’ Your new group has been created. </p>
 }
 //Update page
 else{
+    $result = $DB->db_select_where('user_page', 'id_page', $page_id);
+    $result = $result->fetch_assoc();
+    $owner_page = $result['id_user'];
 	if($user_ID == $owner_page){
 		  $my_post = array(
 		 'ID' => $page_id,
@@ -76,52 +59,25 @@ else{
 	  );
 	  wp_update_post( $my_post );
 	  if($user_ID == '1'){
-		$host = 'shevlyak.mysql.tools';
-		$user = 'shevlyak_fxuser';
-		$password = 'dsbda9ww';
-		$conn = mysql_connect($host, $user, $password);	
-		mysql_select_db('shevlyak_fxuser');
-		$sql = "UPDATE user_page SET admin_title='$page_name' WHERE id_page='$page_id'";
-		$retval = mysql_query( $sql );
-		mysql_close($conn);
+          $DB->db_update('user_page', 'admin_title', $page_name, 'id_page', $page_id);
 	  }
 	}
 	else{
-		$host = 'shevlyak.mysql.tools';
-		$user = 'shevlyak_fxuser';
-		$password = 'dsbda9ww';
-		$conn = mysql_connect($host, $user, $password);	
-		mysql_select_db('shevlyak_fxuser');
-		$sql = "UPDATE user_page SET admin_title='$page_name' WHERE id_page='$page_id'";
-		$retval = mysql_query( $sql );
-		mysql_close($conn);
+        $DB->db_update('user_page', 'admin_title', $page_name, 'id_page', $page_id);
 	}
-	  
-	  $host = 'shevlyak.mysql.tools';
-	$user = 'shevlyak_fxuser';
-	$password = 'dsbda9ww';
-	$conn = mysql_connect($host, $user, $password);	
-	mysql_select_db('shevlyak_fxuser');
-	
-	
-	  $sql = " DELETE FROM skills WHERE id_page='".$page_id."'; ";
-	  $retval = mysql_query( $sql );
-	  
-	  
-	  
+
+
+    $DB->db_delete('skills', 'id_page', $page_id);
+
+
 	$skills = $_POST['skills'];
 	  $skills = array_reverse($skills);
 	  foreach($skills as $skill){
 		  if(!empty($skill)){
-		  $sql = "INSERT INTO skills ".
-				"(id_page, skill_meta) ".
-				"VALUES ('$page_id', '$skill') ";
-		  $retval = mysql_query( $sql );
+              $DB->db_insert('skills', 'id_page, skill_meta', "'".$page_id."', '".$skill."'");
 		  }
 	  }
-			mysql_close($conn);  
 		$feedback = "<h3 class='feedback'>Update successful!</h3>";
 }
 update_user_meta( $user_ID, 'feedback', $feedback );
 header('Location: /wp-admin/admin.php?page=reg-form');
-  ?>

@@ -1,21 +1,13 @@
 <?php 
 	$id_page = $_POST['id'];
 	if(!empty($id_page)){
-	$url = explode("?", $_SERVER['HTTP_REFERER']);
 	require_once(dirname(FILE) . '/../../../../wp-load.php');
-	
-	$host = 'shevlyak.mysql.tools';
-	$user = 'shevlyak_fxuser';
-	$password = 'dsbda9ww';
-	$conn = mysql_connect($host, $user, $password);	
-	mysql_select_db('shevlyak_fxuser');
-	
+    require_once('../Db_connection.class.php');
+    $DB = new Db_connection();
 	$link = cc_get_googl_short_it($id_page);
 	$page_title = get_the_title($id_page);
-
-	$skills_sql = 'SELECT skill_meta FROM skills WHERE (id_page=\''.$id_page.'\')';
-	$skill_query = mysql_query($skills_sql);
-	while($skill_array = mysql_fetch_array ($skill_query)) {
+	$result = $DB->db_select_where('skills', 'id_page', $id_page);
+	while($skill_array = $result->fetch_assoc()) {
       $skills[] = $skill_array['skill_meta'];
 	}
 	?>
@@ -50,7 +42,7 @@
 		</thead>
 		<?php for($i=0; $i<45; $i++){ ?>
 			<tr>
-				<td><input type="text" name="skills[]" value="<?php echo $skills[$i]; ?>"></td>
+				<td><input type="text" name="skills[]" value=""></td>
 			</tr>
 		<?php } ?>
 		</table>

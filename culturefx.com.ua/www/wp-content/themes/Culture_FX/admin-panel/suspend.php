@@ -1,5 +1,4 @@
 <?php
-	$url = explode("?", $_SERVER['HTTP_REFERER']);
 	require_once(dirname(FILE) . '/../../../../wp-load.php');
 	$id_page = $_POST['id'];
 	$suspend = $_POST['suspend'];

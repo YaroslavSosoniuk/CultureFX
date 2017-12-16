@@ -67,33 +67,33 @@
 
             <p class='input_label gender'>Gender*</p>
             <div class='gender_chose'>
-                <input type='checkbox' class='gender_radio' name='gender' value='Male' checked>
-                <label for='gender'>Male</label>
+                <input type='checkbox' class='gender_radio' name='gender' value='Male' id="gender_radio_1" checked>
+                <label for='gender_radio_1'>Male</label>
                 <br>
-                <input type='checkbox' class='gender_radio' name='gender' value='Female'>
-                <label for='gender'>Female</label>
+                <input type='checkbox' class='gender_radio' name='gender' value='Female' id="gender_radio_2">
+                <label for='gender_radio_2'>Female</label>
                 <br>
-                <input type='checkbox' class='gender_radio' name='gender' value='No preference'>
-                <label for='gender'>No preference</label>
+                <input type='checkbox' class='gender_radio' name='gender' value='No preference' id="gender_radio_3">
+                <label for='gender_radio_3'>No preference</label>
             </div>
             <br>
 
             <p class='input_label age' class='tooltip' title=' 18-29 , 30-39 , 40-49, 50+'>Your Age Range*</p>
             <div class='age_points'>
-              <input type='checkbox' class='age_radio' name='age_change' value='18-29' checked>
-              <label for='age_change' class='age_label'>18-29</label>
+              <input type='checkbox' class='age_radio' name='age_change' value='18-29' id="age_change_1" checked>
+              <label for='age_change_1' class='age_label'>18-29</label>
               <br>
-              <input type='checkbox' class='age_radio' name='age_change' value='30-39'>
-              <label for='age_change' class='age_label'>30-39</label>
+              <input type='checkbox' class='age_radio' name='age_change' value='30-39 ' id="age_change_2">
+              <label for='age_change_2' class='age_label'>30-39</label>
               <br>
-              <input type='checkbox' class='age_radio' name='age_change' value='40-49'>
-              <label for='age_change' class='age_label'>40-49</label>
+              <input type='checkbox' class='age_radio' name='age_change' value='40-49' id="age_change_3">
+              <label for='age_change_3' class='age_label'>40-49</label>
               <br>
-              <input type='checkbox' class='age_radio' name='age_change' value='50+'>
-              <label for='age_change' class='age_label'>50+</label>
+              <input type='checkbox' class='age_radio' name='age_change' value='50+' id="age_change_4">
+              <label for='age_change_3' class='age_label'>50+</label>
               <br>
-              <input type='checkbox' class='age_radio' name='age_change' value='No preference'>
-              <label for='age_change' class='age_label'>No preference</label>
+              <input type='checkbox' class='age_radio' name='age_change' value='No preference' id="age_change_5">
+              <label for='age_change_5' class='age_label'>No preference</label>
           </div>
           <p class='input_label'>General Area of Expertise or Occupation</p>
           <input type='text' name='expertise_or_occupation' value='' class='tooltip' title='Example : Doctor, Digital Markter, etc'>
@@ -116,32 +116,32 @@
           <p  class='input_label'>On average. how long will it take you to complete a meeting with a mutual mathc?</p>
 
 
-          <input type='radio' name='receive_match' value='Same Day' checked>
-          <label for=''>Same Day</label>
+          <input id="first_radio" type='radio' name='receive_match' value='Same Day' checked>
+          <label for='first_radio'>Same Day</label>
           <br>
 
-          <input type='radio' name='receive_match' value='2-3 Days'>
-          <label for=''>2-3 Days</label>
+          <input id="second_radio" type='radio' name='receive_match' value='2-3 Days'>
+          <label for='second_radio'>2-3 Days</label>
           <br>
 
-          <input type='radio' name='receive_match' value='That week'>
-          <label for=''>That week</label>
+          <input id="third_radio" type='radio' name='receive_match' value='That week'>
+          <label for='third_radio'>That week</label>
           <br>
 
-          <input type='radio' name='receive_match' value='Within 2 weeks'>
-          <label for=''>Within 2 weeks</label>
+          <input id="fourth_radio" type='radio' name='receive_match' value='Within 2 weeks'>
+          <label for='fourth_radio'>Within 2 weeks</label>
           <br>
 
-          <input type='radio' name='receive_match' value='Within 1 month'>
-          <label for=''>Within 1 month</label>
+          <input id="fifh_radio" type='radio' name='receive_match' value='Within 1 month'>
+          <label for='fifh_radio'>Within 1 month</label>
           <br>
 
-          <input type='radio' name='receive_match' value='Within 1 month'>
-          <label for=''>Within 2 months</label>
+          <input id="sixth_radio" type='radio' name='receive_match' value='Within 1 month'>
+          <label for='sixth_radio'>Within 2 months</label>
           <br>
 
-          <input type='radio' name='receive_match' value='Varies Wildly, I have a very busy schedule'>
-          <label for=''>Varies Wildly, I have a very busy schedule</label>
+          <input  type='radio' name='receive_match' value='Varies Wildly, I have a very busy schedule' id="seventh_radio">
+          <label for='seventh_radio'>Varies Wildly, I have a very busy schedule</label>
           <br>
 
           <div class='input_text_italic'><p>&quot;In a world with a lot of noise, it&#8217;s hard to find, connect with, and network with people that have the talent and skills, and mindset tou,re looking for at that moment.	&quot;</p></div>

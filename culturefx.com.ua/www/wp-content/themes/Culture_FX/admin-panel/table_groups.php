@@ -1,26 +1,31 @@
 <?php
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-	$url = explode("?", $_SERVER['HTTP_REFERER']);
 	require_once(dirname(FILE) . '/../../../../wp-load.php');
+	require_once('../Db_connection.class.php');
 	}
+	else{
+        require_once('../wp-content/themes/Culture_FX/Db_connection.class.php');
+    }
 	$user_ID=get_current_user_id();
+    $DB = new Db_connection();
 	if($user_ID == 1){
-		$host = 'shevlyak.mysql.tools';
-		$user = 'shevlyak_fxuser';
-		$password = 'dsbda9ww';
-		$conn = mysql_connect($host, $user, $password);	
-		mysql_select_db('shevlyak_fxuser');
-		$query = 'SELECT * FROM user_page';
-		$q = mysql_query($query);
-		while($result = mysql_fetch_array ($q)) {
+	    $q = $DB->db_select('user_page');
+		while($result = $q->fetch_assoc()) {
 			$pages[] = $result;
 			$group_size += $result['group_size'];
-			$page_users = mysql_query('SELECT * FROM wp_cultures WHERE (id_page=\''.$result['id_page'].'\')');
+			$page_users = $DB->db_select_where('wp_cultures', 'id_page', $result['id_page']);
 			$count_users = 0;
-			while($cycle_users = mysql_fetch_array ($page_users)) {
+			while($cycle_users = $page_users->fetch_assoc()) {
 				$count_users++;
 			}
 			$quantity_users[] = $count_users;
+
+			$count_matched = 0;
+            $page_matched = $DB->db_select_where('user_pairs', 'id_page', $result['id_page']);
+            while($cycle_matched = $page_matched->fetch_assoc()) {
+                $count_matched++;
+            }
+            $quantity_matched[] = $count_matched;
 		}
 		?>
 		<table>
@@ -34,7 +39,7 @@
 		</th>
 		<th>
 			<p>Total # Matched</p>
-			<p class="total_num"></p>
+			<p class="total_num"><?php echo array_sum($quantity_matched); ?></p>
 			<p># Matched</p>
 		</th>
 		<th>
@@ -57,7 +62,7 @@
 			<td><p><?php echo $i . '. ' . $page_title; ?></p><p><span class="edit_admin">Edit </span><input class="id_page_input" type="text" value="<?php echo $page['id_page']; ?>" hidden><input type="checkbox" class="suspend" id="suspend_<?php echo $page['id_page']; ?>" <?php if($page_status == 'private'){ echo 'checked value="1"'; } else{ echo 'value="0"'; } ?> name="suspend"><label for="suspend_<?php echo $page['id_page']; ?>">Suspend </label><input type="checkbox" class="data_csv" id="data_<?php echo $page['id_page']; ?>" <?php if($page['csv_load'] == '1'){ echo 'checked value="1"'; } else{ echo 'value="0"'; } ?> name="data"><label for="data_<?php echo $page['id_page']; ?>">Data</label></p></td>
 			<td><a href="<?php echo get_edit_user_link( $page['id_user']); ?>"><?php echo $avtor; ?></a></td>
 			<td><?php echo $page['group_size']; ?></td>
-			<td></td>
+			<td><?php echo $quantity_matched[$qu]; ?></td>
 			<td><?php echo $quantity_users[$qu]; ?></td>
 		</tr>
 		<?php
@@ -79,14 +84,8 @@
 		
 <?php	}
 	else{
-	$host = 'shevlyak.mysql.tools';
-	$user = 'shevlyak_fxuser';
-	$password = 'dsbda9ww';
-	$conn = mysql_connect($host, $user, $password);	
-	mysql_select_db('shevlyak_fxuser');
-	$query = 'SELECT * FROM user_page WHERE (id_user=\''.$user_ID.'\')';
-	$q = mysql_query($query);
-	if(empty(mysql_num_rows($q))){ ?>
+	$q = $DB->db_select_where('user_page', 'id_user', $user_ID);
+	if(empty($q->num_rows)){ ?>
 	<table>
 	<thead>
 		<th>
@@ -97,15 +96,22 @@
 	<?php
 	exit;
 	}	
-	while($result = mysql_fetch_array ($q)) {
+	while($result = $q->fetch_assoc()) {
       $pages[] = $result;
       $group_size += $result['group_size'];
-	  $page_users = mysql_query('SELECT * FROM wp_cultures WHERE (id_page=\''.$result['id_page'].'\')');
+      $page_users = $DB->db_select_where('wp_cultures', 'id_page', $result['id_page']);
 	  $count_users = 0;
-	  while($cycle_users = mysql_fetch_array ($page_users)) {
+	  while($cycle_users = $page_users->fetch_assoc()) {
 		$count_users++;
 	  }
 	  $quantity_users[] = $count_users;
+
+        $count_matched = 0;
+        $page_matched = $DB->db_select_where('user_pairs', 'id_page', $result['id_page']);
+        while($cycle_matched = $page_matched->fetch_assoc()) {
+            $count_matched++;
+        }
+        $quantity_matched[] = $count_matched;
 	}
 ?>
 <table>
@@ -119,7 +125,7 @@
 		</th>
 		<th>
 			<p>Total # Matched</p>
-			<p class="total_num"></p>
+			<p class="total_num"><?php echo array_sum($quantity_matched); ?></p>
 			<p># Matched</p>
 		</th>
 		<th>
@@ -141,7 +147,7 @@
 			<td><p><?php echo $i . '. ' . $page_title; ?></p><p><span class="edit_admin">Edit </span><input type="text" value="<?php echo $page['id_page']; ?>" hidden><?php if($page['csv_load'] == 1) echo '<form method="POST" action="/wp-content/themes/Culture_FX/csv_load.php"><input name="id" type="text" value="'.$page['id_page'].'" hidden><button class="data_admin">Data</button></form>'; ?></p></td>
 			<td><?php echo $avtor; ?></td>
 			<td><?php echo $page['group_size']; ?></td>
-			<td></td>
+			<td><?php echo $quantity_matched[$qu]; ?></td>
 			<td><?php echo $quantity_users[$qu]; ?></td>
 		</tr>
 		<?php

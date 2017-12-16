@@ -1,18 +1,11 @@
 <?php
 	$id_page = $_POST['id'];
 	$data = $_POST['data'];
-	$host = 'shevlyak.mysql.tools';
-	$user = 'shevlyak_fxuser';
-	$password = 'dsbda9ww';
-	$conn = mysql_connect($host, $user, $password);	
-	mysql_select_db('shevlyak_fxuser');
+    require_once('../Db_connection.class.php');
+    $DB = new Db_connection();
 	if($data == 1){
-		$sql = "UPDATE user_page SET csv_load='1' WHERE id_page='$id_page'";
-		$retval = mysql_query( $sql );
+        $DB->db_update('user_page', 'csv_load', '1', 'id_page', $id_page);
 	}
 	else{
-		$sql = "UPDATE user_page SET csv_load='0' WHERE id_page='$id_page'";
-		$retval = mysql_query( $sql );
+        $DB->db_update('user_page', 'csv_load', '0', 'id_page', $id_page);
 	}
-	mysql_close($conn);
-?>
